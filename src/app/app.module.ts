@@ -3,10 +3,20 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HeaderComponent } from './header/header.component';
+import { WelcomeComponent } from './welcome/welcome.component';
+import { UsersComponent } from './users/users.component';
+import { AuthComponent } from './auth/auth.component';
+import { DropdownDirective } from './shared/dropdown.directive';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    WelcomeComponent,
+    UsersComponent,
+    AuthComponent,
+    DropdownDirective,
   ],
   imports: [
     BrowserModule,
