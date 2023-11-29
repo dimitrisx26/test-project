@@ -6,8 +6,9 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { UsersComponent } from './users/users.component';
-import { AuthComponent } from './auth/auth.component';
 import { DropdownDirective } from './shared/dropdown.directive';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
@@ -15,8 +16,9 @@ import { DropdownDirective } from './shared/dropdown.directive';
     HeaderComponent,
     WelcomeComponent,
     UsersComponent,
-    AuthComponent,
     DropdownDirective,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
