@@ -1,1 +1,47 @@
-<p>register works!</p>
+<form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+  <div class="mb-3">
+    <label for="email" class="form-label">Email address</label>
+    <input
+      type="email"
+      class="form-control"
+      id="email"
+      name="email"
+      placeholder="Enter email"
+      required
+      formControlName="email"
+      email
+    />
+    <span
+      *ngIf="
+        registerForm.get('email').invalid && registerForm.get('email').touched
+      "
+      >Email is invalid!</span
+    >
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input
+      type="password"
+      class="form-control"
+      id="password"
+      name="password"
+      placeholder="Enter password"
+      required
+      formControlName="password"
+      minlength="6"
+    />
+    <span
+      *ngIf="
+        registerForm.get('password').invalid && registerForm.get('password').touched
+      "
+      >Password is invalid! It must be at least 6 characters</span
+    >
+  </div>
+  <button
+    type="submit"
+    class="btn btn-primary"
+    [disabled]="registerForm.invalid"
+  >
+    Register
+  </button>
+</form>
