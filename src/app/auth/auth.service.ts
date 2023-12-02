@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject, catchError, tap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, tap, throwError } from 'rxjs';
 import { User } from './user.model';
 import { Router } from '@angular/router';
 
@@ -11,7 +11,7 @@ interface AuthResponseData {
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  user = new Subject<User>();
+  user = new BehaviorSubject<User>(null);
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -47,14 +47,14 @@ export class AuthService {
   autoLogin() {
     const userData: {
       id: string;
-      token: string;
+      _token: string;
     } = JSON.parse(localStorage.getItem('userData'));
 
     if (!userData) {
       return;
     }
 
-    const loadedUser = new User(userData.id, userData.token);
+    const loadedUser = new User(userData.id, userData._token);
 
     if (loadedUser.token) {
       this.user.next(loadedUser);
@@ -64,12 +64,16 @@ export class AuthService {
   logout() {
     this.user.next(null);
     this.router.navigate(['/welcome']);
+    localStorage.removeItem('userData');
   }
 
   private handleAuthentication(userId: string, token: string) {
     const user = new User(userId, token);
     this.user.next(user);
-    localStorage.setItem('userData', JSON.stringify(user));
+    localStorage.setItem(
+      'userData',
+      JSON.stringify({ id: userId, _token: token })
+    );
   }
 
   private handleError(errorRes: HttpErrorResponse) {
