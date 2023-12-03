@@ -12,6 +12,7 @@ import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { TableModule } from 'primeng/table';
+import { PaginatorModule } from 'primeng/paginator';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { TableModule } from 'primeng/table';
     FormsModule,
     HttpClientModule,
     TableModule,
+    PaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
