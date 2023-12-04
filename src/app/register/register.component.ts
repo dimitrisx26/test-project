@@ -25,14 +25,15 @@ export class RegisterComponent {
 
     const email = this.registerForm.value.email;
     const password = this.registerForm.value.password;
-
-    this.authService.signup(email, password).subscribe(
-      (resData) => {
+//todo you are using a depricated function here, fix it
+    this.authService.signup(email, password).subscribe({
+      next: (resData) => {
         console.log(resData);
-      },
+    }
+      ,error:
       (errorMessage) => {
         this.error = errorMessage;
-      }
+      }}
     );
 
     this.registerForm.reset();

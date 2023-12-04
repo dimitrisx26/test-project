@@ -17,10 +17,12 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+    //also needs a guard to prevent logged in users from accessing this page
   },
   {
     path: 'register',
     component: RegisterComponent,
+    //also needs a guard to prevent logged in users from accessing this page
   },
 ];
 

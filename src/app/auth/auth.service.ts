@@ -11,7 +11,7 @@ interface AuthResponseData {
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  user = new BehaviorSubject<User>(null);
+  readonly user = new BehaviorSubject<User>(null);
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -77,11 +77,13 @@ export class AuthService {
   }
 
   private handleError(errorRes: HttpErrorResponse) {
+    //todo you are using the function in a wrong way, fix it
+    //todo show the error from the service
     let errorMessage = 'Invalid credentials';
     if (!errorRes.error || !errorRes.error.error) {
-      return throwError(errorMessage);
+      return throwError(()=>errorRes.error || errorRes.error.error);
     }
 
-    return throwError(errorMessage);
+    return throwError(()=>errorMessage);
   }
 }

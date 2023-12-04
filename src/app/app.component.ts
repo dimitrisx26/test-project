@@ -13,6 +13,7 @@ export class AppComponent implements OnInit {
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
+    //todo wait for autologin result before showing anything in the page
     this.authService.autoLogin();
   }
 }

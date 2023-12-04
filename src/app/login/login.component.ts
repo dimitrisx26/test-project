@@ -25,15 +25,15 @@ export class LoginComponent {
 
     const email = this.loginForm.value.email;
     const password = this.loginForm.value.password;
-
-    this.authService.login(email, password).subscribe(
-      (resData) => {
+    //todo you are using a depricated function here, fix it
+    this.authService.login(email, password).subscribe({
+      next: (resData) => {
         console.log(resData);
       },
-      (errorMessage) => {
+      error: (errorMessage) => {
         this.error = errorMessage;
-      }
-    );
+      },
+    });
 
     this.loginForm.reset();
   }
